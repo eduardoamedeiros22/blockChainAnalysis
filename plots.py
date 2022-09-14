@@ -9,8 +9,8 @@ def main():
     # Bloco mais antigo =  height: 684192, tempo: 2021-05-19 12:49:40 , tempo unix: 1621428580
     # Bloco mais novo =  height: 737327, tempo: 2022-05-21 17:37:25, tempo unix: 1653154645
     dbname = get_database()
-    collection_miner = dbname["blocos"]
-    mineradores = list(collection_miner.find())
+    collection_blocos = dbname["blocos"]
+    mineradores = list(collection_blocos.find())
     contador = 0
 
     x_height_total = []
