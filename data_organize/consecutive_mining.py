@@ -11,23 +11,18 @@ def main():
     blocos_separados = [
         blocks[idx:idx + n] for idx in range(0, len(blocks), n)
     ]
-    blocos_separados.pop(0)
-    blocos_separados.pop(1)
-    blocos_separados.pop(2)
-    blocos_separados.pop(3)
-    blocos_separados.pop(4)
-    blocos_separados.pop(5)
 
     print(len(blocos_separados))
 
-    month_count = 7
+    # Utilizado para começar a analise de permutação a partir de um mês diferente do primeiro
+    # month_count = 7
 
-    # unify_months(7)
-    #
-    for grupo_blocos in blocos_separados:
-        primary_block_ordenation_consecutive_count(month_count, grupo_blocos)
-        permutation_block_ordenation_consecutive_count(1000, month_count, grupo_blocos)
-        month_count += 1
+    unify_months(13)
+
+    # for grupo_blocos in blocos_separados:
+    #     primary_block_ordenation_consecutive_count(month_count, grupo_blocos)
+    #     permutation_block_ordenation_consecutive_count(1000, month_count, grupo_blocos)
+    #     month_count += 1
 
 
 def permutation_block_ordenation_consecutive_count(number_of_permutations, month_count, blocks):
