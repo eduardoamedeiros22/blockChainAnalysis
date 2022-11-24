@@ -17,7 +17,7 @@ def main():
     # Utilizado para começar a analise de permutação a partir de um mês diferente do primeiro
     # month_count = 7
 
-    unify_months(13)
+    # unify_months(13)
 
     # for grupo_blocos in blocos_separados:
     #     primary_block_ordenation_consecutive_count(month_count, grupo_blocos)
