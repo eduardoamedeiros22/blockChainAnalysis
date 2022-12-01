@@ -64,7 +64,7 @@ def permutation_block_integer_ordenation_consecutive_count(number_of_permutation
         block_interval = blocks[initial_block: initial_block + k_value]
         permutations = number_of_permutations
 
-        # Iniciando as permutações
+        # Iniciando as permutações com análise
         while permutations > 0:
             repetition_count = 0
             previous_block = -1
