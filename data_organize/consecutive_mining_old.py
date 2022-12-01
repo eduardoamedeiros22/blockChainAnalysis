@@ -7,6 +7,8 @@ def main():
     dbname = get_database()
     collection_blocks = dbname["blocos"]
     blocks = list(collection_blocks.find())
+
+    # Separação dos blocos em meses
     n = int(len(blocks) / 12)
     blocos_separados = [
         blocks[idx:idx + n] for idx in range(0, len(blocks), n)
@@ -17,8 +19,10 @@ def main():
     # Utilizado para começar a analise de permutação a partir de um mês diferente do primeiro
     # month_count = 7
 
+    # Função que une as análises em um único index no banco
     # unify_months(13)
 
+    # O primeiro mês de blocos era diferente do resto, precisando de uma função so pra ele
     # for grupo_blocos in blocos_separados:
     #     primary_block_ordenation_consecutive_count(month_count, grupo_blocos)
     #     permutation_block_ordenation_consecutive_count(1000, month_count, grupo_blocos)
