@@ -16,7 +16,7 @@ def main():
     ini = time.time()
     # permutation_block_ordenation_consecutive_count(1000, 1000, 30000, block_list, miner_list)
     for i in range(12):
-        permutation_block_integer_ordenation_consecutive_count_improve(10000, (int(len(integer_block_list) / 12)), (i * month_count), integer_block_list)
+        permutation_block_integer_ordenation_consecutive_count_improve(10000, month_count, (i * month_count), integer_block_list)
     fim = time.time()
     print("Tempo em segundos: ", fim - ini)
 
