@@ -1,7 +1,6 @@
 import random
 import time
 
-
 import numpy as np
 
 
@@ -12,11 +11,24 @@ def main():
     miner_list = list(np.load('../resources/miner_array.npy'))
     integer_block_list = list(np.load('../resources/block_integer_array.npy'))
     month_count = int(len(integer_block_list) / 12)
+    number_of_permutations = 1000
+    month = 0
 
     ini = time.time()
-    # permutation_block_ordenation_consecutive_count(1000, 1000, 30000, block_list, miner_list)
+
     for i in range(12):
-        permutation_block_integer_ordenation_consecutive_count_improve(10000, month_count, (i * month_count), integer_block_list)
+
+        block_interval = integer_block_list[i * month_count: i * month_count + month_count]
+
+        mining_power_list = mining_power(block_interval)
+
+        final_interval_consecutive_mining, original_consecutive_analysis = \
+            permutation_block_integer_ordenation_consecutive_count_improve(number_of_permutations, block_interval)
+
+        consecutive_analisys_organize(final_interval_consecutive_mining, number_of_permutations,
+                                      month, mining_power_list, original_consecutive_analysis)
+
+        month += 1
     fim = time.time()
     print("Tempo em segundos: ", fim - ini)
 
@@ -52,12 +64,11 @@ def permutation_block_ordenation_consecutive_count(number_of_permutations, k_val
 
     print(structure_consecutive_miner_list)
 
-def permutation_block_integer_ordenation_consecutive_count_improve(number_of_permutations, k_value, initial_block, blocks):
 
+def permutation_block_integer_ordenation_consecutive_count_improve(number_of_permutations, block_interval):
     # Zerando os valores de parametro
     structure_consecutive_miner_list = []
     consecutive_mining_count_list = []
-    block_interval = blocks[initial_block: initial_block + k_value]
     permutations = number_of_permutations
     final_interval_consecutive_mining = []
 
@@ -93,7 +104,31 @@ def permutation_block_integer_ordenation_consecutive_count_improve(number_of_per
             if first_analisys[i] > miner_analisys[i]:
                 final_interval_consecutive_mining[i] += 1
 
-    print(final_interval_consecutive_mining)
+    # print(final_interval_consecutive_mining)
+
+    return final_interval_consecutive_mining, first_analisys
+
+
+def mining_power(integer_block_list):
+    mining_power_list = []
+    for i in range(89):
+        mining_power_list.append(0)
+
+    for block in integer_block_list:
+        mining_power_list[block] += 1
+
+    return mining_power_list
+
+
+def consecutive_analisys_organize(analysis_list, number_of_permutations, month, mining_power_list,
+                                  original_consecutive_analysis):
+    for analysis in analysis_list:
+        if analysis >= int(number_of_permutations * 0.95):
+            print("Month: {}, Suspicious Miner : {}, Consecutive Analysis: {}, "
+                  "Mining_Power: {}, First Consecutive Analysis: {}"
+                  .format(month, analysis_list.index(analysis), analysis,
+                          mining_power_list[analysis_list.index(analysis)],
+                          original_consecutive_analysis[analysis_list.index(analysis)]))
 
 
 if __name__ == "__main__":

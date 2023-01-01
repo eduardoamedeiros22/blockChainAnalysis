@@ -12,10 +12,8 @@ Na pasta analysis o arquivo consecutive_mining possui um método de nome:
 "permutation_block_integer_ordenation_consecutive_count_improve"
 Ele é o responsável por fazer a análise de mineração consecutiva com os dados já coletados, seus parâmetros são:
 
-    number_of_permutations = numero de permutações que serão realizadas na massa de blocos analisada
-    k_value = numero de blocos em um intervalo de análise
-    initial_block = bloco inicial da análise
-    blocks = vetor com os blocos obtidos na rede
+    number_of_permutations = Número de permutações que serão realizadas na massa de blocos analisada
+    block_interval = Lista de blocos criada dentro do intervalo estipulado
 
 ## Contribuição
 
