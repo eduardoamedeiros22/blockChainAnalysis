@@ -11,7 +11,7 @@ def main():
     miner_list = list(np.load('../resources/miner_array.npy'))
     integer_block_list = list(np.load('../resources/block_integer_array.npy'))
     month_count = int(len(integer_block_list) / 12)
-    number_of_permutations = 1000
+    number_of_permutations = 10000
     month = 0
 
     ini = time.time()
@@ -125,7 +125,7 @@ def consecutive_analisys_organize(analysis_list, number_of_permutations, month, 
     for analysis in analysis_list:
         if analysis >= int(number_of_permutations * 0.95):
             print("Month: {}, Suspicious Miner : {}, Consecutive Analysis: {}, "
-                  "Mining_Power: {}, First Consecutive Analysis: {}"
+                  "Mining_Power: {}, First Consecutive Analysis (Without Shuffle): {}"
                   .format(month, analysis_list.index(analysis), analysis,
                           mining_power_list[analysis_list.index(analysis)],
                           original_consecutive_analysis[analysis_list.index(analysis)]))
