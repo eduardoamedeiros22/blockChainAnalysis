@@ -2,7 +2,7 @@ import numpy as np
 
 
 def main():
-    miner_list = list(np.load('../resources/miner_array.npy'))
+    miner_list = list(np.load('../resources/miner_shuffle_array.npy'))
     miner_traduction_table(miner_list)
 
 

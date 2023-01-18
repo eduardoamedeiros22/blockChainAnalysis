@@ -8,7 +8,7 @@ def main():
     ## Busca os dados de mineradores e blocos ##
     ## Vetor de blocos apenas com o hash dos mineradores ##
     block_list = list(np.load('../resources/block_array.npy'))
-    miner_list = list(np.load('../resources/miner_array.npy'))
+    miner_list = list(np.load('../resources/miner_shuffle_array.npy'))
     integer_block_list = list(np.load('../resources/block_integer_array.npy'))
     month_count = int(len(integer_block_list) / 12)
     number_of_permutations = 10000

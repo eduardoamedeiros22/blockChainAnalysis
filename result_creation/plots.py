@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import nltk as nltk
+import numpy as np
+import random
 
 nltk.download('inaugural')
 from db_connection.connection import get_database
@@ -10,38 +12,30 @@ def main():
     # Bloco mais novo =  height: 737327, tempo: 2022-05-21 17:37:25, tempo unix: 1653154645
     dbname = get_database()
     collection_blocos = dbname["blocos"]
+    miners = list(np.load('../resources/miner_shuffle_array.npy'))
     mineradores = list(collection_blocos.find())
+    random.shuffle(miners)
     contador = 0
 
     x_height_total = []
     y_hash_total = []
-
-    x_height_first_20k = []
-    y_hash_first_20k = []
-
-    x_height_middle_20k = []
-    y_hash_middle_20k = []
-
-    x_height_last_20k = []
-    y_hash_last_20k = []
     for minerador in mineradores:
-        x_height_total.append(minerador['height'])
-        y_hash_total.append(minerador['miner_adress'])
-        if 10000 < contador < 20000:
-            x_height_first_20k.append(minerador['height'])
-            y_hash_first_20k.append(minerador['miner_adress'])
-        elif 40000 >= contador > 20000:
-            x_height_middle_20k.append(minerador['height'])
-            y_hash_middle_20k.append(minerador['miner_adress'])
-        else:
-            x_height_last_20k.append(minerador['height'])
-            y_hash_last_20k.append(minerador['miner_adress'])
-
         contador += 1
+        x_height_total.append(minerador['height'])
+        y_hash_total.append(return_index_miner(miners, minerador['miner_adress']))
+        if contador == 4000:
+            break
 
     plt.scatter(x=x_height_total, y=y_hash_total, marker='|')
-    plt.gca().axes.get_yaxis().set_visible(False)
+    plt.gca().axes.get_yaxis().set_visible(True)
     plt.show()
+
+
+def return_index_miner(miner_array, miner):
+    for miner_hash in miner_array:
+        if miner_hash == miner:
+            return miner_array.index(miner_hash)
+
 
 
 if __name__ == "__main__":
