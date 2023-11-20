@@ -23,8 +23,8 @@ def main():
         contador += 1
         x_height_total.append(minerador['height'])
         y_hash_total.append(return_index_miner(miners, minerador['miner_adress']))
-        if contador == 4000:
-            break
+        # if contador == 4000:
+        #     break
 
     plt.scatter(x=x_height_total, y=y_hash_total, marker='|')
     plt.gca().axes.get_yaxis().set_visible(True)

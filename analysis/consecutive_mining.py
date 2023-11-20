@@ -1,3 +1,4 @@
+import datetime
 import random
 import time
 
@@ -15,6 +16,7 @@ def main():
     month = 0
 
     ini = time.time()
+    print(block_list)
 
     for i in range(12):
 
@@ -31,6 +33,9 @@ def main():
         month += 1
     fim = time.time()
     print("Tempo em segundos: ", fim - ini)
+
+    date = datetime.date.today() - datetime.timedelta (1)
+    print(date)
 
 
 def permutation_block_ordenation_consecutive_count(number_of_permutations, k_value, initial_block, blocks, miners):
@@ -90,12 +95,6 @@ def permutation_block_integer_ordenation_consecutive_count_improve(number_of_per
             consecutive_mining_count_list.append(0)
 
     first_analisys = structure_consecutive_miner_list.pop(0)
-    # Código aqui gera um grande vetor com vários vetores dentro
-    # Os vetores internos "consecutive_mining_count_list" possuem 89 posições representando a contagem de minerações consecutivas de cada minerador
-    # O vetor maior "structure_consecutive_miner_list" armazena x(numero de permutações) vetores internos
-
-    # Nessa parte serão comparados o valores da distribuição original com as permutações
-    # O resultado será salvo em um vetor com os mineradores identificados pelo index , ou seja, um vetor com 89 posições
     for i in range(89):
         final_interval_consecutive_mining.append(0)
 
